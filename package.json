@@ -20,6 +20,9 @@
     "url": "https://github.com/mikelgo/ts-utils/issues"
   },
   "homepage": "https://github.com/mikelgo/ts-utils#readme",
+  "files": [
+    "lib/**/*"
+  ],
   "devDependencies": {
     "prettier": "^2.0.2",
     "tslint": "^6.1.0",
