@@ -1,6 +1,7 @@
 {
-  "name": "ts-utils",
+  "name": "@mikelgo/ts-utils",
   "version": "1.0.0",
+  "private": false,
   "description": "A collection of TypeScript utility functions",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -8,12 +9,7 @@
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags"
+    "lint": "tslint -p tsconfig.json"
   },
   "repository": {
     "type": "git",

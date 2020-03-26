@@ -4,7 +4,7 @@
 export const primitiveValues = {
   number: 42,
   null: null,
-  undefined: undefined,
+  unde: undefined,
   string: 'some string',
   true: true,
   false: false

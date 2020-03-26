@@ -22,7 +22,7 @@ describe('[Array utils]', () => {
 
   it('isArray() should return false if the input is not an array', () => {
     expect(isArray(primitiveValues.null)).toEqual(false);
-    expect(isArray(primitiveValues.undefined)).toEqual(false);
+    expect(isArray(primitiveValues.unde)).toEqual(false);
     expect(isArray(primitiveValues.number)).toEqual(false);
     expect(isArray(primitiveValues.string)).toEqual(false);
     expect(isArray(primitiveValues.true)).toEqual(false);
@@ -30,7 +30,7 @@ describe('[Array utils]', () => {
 
   it('isNotArray() should return true if the input is not an array', () => {
     expect(isNotArray(primitiveValues.null)).toEqual(true);
-    expect(isNotArray(primitiveValues.undefined)).toEqual(true);
+    expect(isNotArray(primitiveValues.unde)).toEqual(true);
     expect(isNotArray(primitiveValues.number)).toEqual(true);
     expect(isNotArray(primitiveValues.string)).toEqual(true);
     expect(isNotArray(primitiveValues.true)).toEqual(true);

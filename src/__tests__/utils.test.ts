@@ -69,12 +69,12 @@ describe('[Object utils]', () => {
 
   it('isValid() should return false when the argument is not a valid value', () => {
     expect(isValid(primitiveValues.null)).toEqual(false);
-    expect(isValid(primitiveValues.undefined)).toEqual(false);
+    expect(isValid(primitiveValues.unde)).toEqual(false);
   });
 
   it('isNotValid() should return true when the argument is not a valid value', () => {
     expect(isNotValid(primitiveValues.null)).toEqual(true);
-    expect(isNotValid(primitiveValues.undefined)).toEqual(true);
+    expect(isNotValid(primitiveValues.unde)).toEqual(true);
   });
 
   it('isNotValid() should return false when the argument is a valid value', () => {
