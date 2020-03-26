@@ -1,6 +1,6 @@
 {
   "name": "@mikelgo/ts-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "A collection of TypeScript utility functions",
   "main": "lib/index.js",
