@@ -20,6 +20,7 @@ export function isNotObjectOrArray(arg: any): boolean {
 
 /**
  * Checks if an argument is an object
+ * Note: will return true if input is an array, because arrays are objects in JavaScript
  * @param arg - parameter which should be verified
  */
 export function isObject(arg: any): boolean {
@@ -36,7 +37,7 @@ export function isObjectOrArray(arg: any): boolean {
 
 /**
  * Checks if a value is a valid value. That means not null, undefined, NaN.
- * @param arg
+ * @param arg - parameter which should be verified
  */
 export function isValid(arg: any): boolean {
   /**
@@ -58,7 +59,7 @@ export function isValid(arg: any): boolean {
 }
 /**
  * Checks if a value is not a valid value. That means null, undefined, NaN.
- * @param arg
+ * @param arg - parameter which should be verified
  */
 export function isNotValid(arg: any): boolean {
   return !isValid(arg);

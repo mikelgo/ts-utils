@@ -38,7 +38,7 @@ export function isNotEmptyArray<T>(arg: T[]): boolean {
 
 /**
  * Checks if all values in an array are equal
- * @param arg
+ * @param arg - array which should be checked
  */
 export function allValuesInArrayAreEqual(arg: any[]): boolean {
   if (isNotArray(arg)) {
@@ -50,7 +50,7 @@ export function allValuesInArrayAreEqual(arg: any[]): boolean {
 
 /**
  * Checks if all values in an array are not equal
- * @param arg
+ * @param arg - array which should be checked
  */
 export function allValuesInArrayAreNotEqual(arg: any[]): boolean {
   if (isNotArray(arg)) {
