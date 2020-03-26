@@ -14,12 +14,12 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "./dist",
+    "declarationDir": "./lib",
     "module": "commonjs",
     "noImplicitAny": true,
-    "lib": ["es2017", "es7", "es6", "dom"],
-    "outDir": "./dist",
-    "target": "es5",
+    "lib": ["es2017", "es2017.object"],
+    "outDir": "./lib",
+    "target": "ES2017",
     "moduleResolution": "node"
   },
   "typedocOptions": {
@@ -27,5 +27,5 @@
     "out": "docs"
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "**/__tests__/*"]
+  "exclude": ["node_modules", "lib", "__tests__/*", "src/data-types.ts"]
 }
