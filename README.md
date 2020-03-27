@@ -1,4 +1,4 @@
-[version](https://img.shields.io/github/package-json/v/mikelgo/ts-utils?style=flat-square)
+[![npm](https://img.shields.io/github/package-json/v/mikelgo/ts-utils?style=flat-square)](https://www.npmjs.com/package/mikelgo/ts-utils)
 
 # Ts-utils
 
