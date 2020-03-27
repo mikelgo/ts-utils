@@ -1,0 +1,5 @@
+{
+  "name": "@mikelgo/ts-utils/common",
+  "main": "index.js",
+  "types": "index.d.ts"
+}

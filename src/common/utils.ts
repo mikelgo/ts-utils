@@ -1,5 +1,5 @@
-import { DataTypes } from './data-types';
-import { isArray } from './array-utils';
+import { DataTypes } from '../@types/data-types';
+import { isArray } from '../array/array-utils';
 
 /**
  * Checks if an argument is not an object

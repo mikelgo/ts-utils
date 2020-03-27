@@ -1,0 +1,5 @@
+{
+  "name": "@mikelgo/ts-utils/array",
+  "main": "index.js",
+  "types": "index.d.ts"
+}
