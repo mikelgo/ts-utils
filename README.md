@@ -1,4 +1,4 @@
-(https://img.shields.io/github/package-json/v/mikelgo/ts-utils?style=flat-square)
+[version](https://img.shields.io/github/package-json/v/mikelgo/ts-utils?style=flat-square)
 
 # Ts-utils
 
