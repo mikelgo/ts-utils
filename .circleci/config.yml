@@ -11,13 +11,8 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
-  build-lib:
-    executor:
-      name: node/default
-    steps:
-      - run: npm run build
+            - run: npm run build
 workflows:
   build-and-test:
     jobs:
       - build-and-test
-      - build-lib
