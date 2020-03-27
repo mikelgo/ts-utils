@@ -1,4 +1,4 @@
-import { isNotObject, isNotObjectOrArray, isObject, isObjectOrArray, isNotValid, isValid } from '../src/utils';
+import { isNotObject, isNotObjectOrArray, isObject, isObjectOrArray, isNotValid, isValid } from '../src/common/utils';
 
 describe('[Object utils]', () => {
   it('isNotObject(): should return true if input is not an object', () => {

@@ -5,7 +5,7 @@ import {
   isNotEmptyArray,
   allValuesInArrayAreEqual,
   allValuesInArrayAreNotEqual
-} from '../src/array-utils';
+} from '../src/array/array-utils';
 describe('[Array utils]', () => {
   it('isArray() should return true if the input is an array', () => {
     expect(isArray([])).toEqual(true);
@@ -48,6 +48,7 @@ describe('[Array utils]', () => {
       isEmptyArray(42);
     }).toThrow(new Error('Argument is not an array.'));
     expect(() => {
+      //@ts-ignore
       isEmptyArray(null);
     }).toThrow(new Error('Argument is not an array.'));
   });
@@ -62,6 +63,7 @@ describe('[Array utils]', () => {
 
   it('isNotEmptyArray() should throw an error when argument is not an array', () => {
     expect(() => {
+      //@ts-ignore
       isNotEmptyArray(null);
     }).toThrow(new Error('Argument is not an array.'));
   });
@@ -78,6 +80,7 @@ describe('[Array utils]', () => {
 
   it('allValuesInArrayAreEqual() should throw an error when argument is not an array', () => {
     expect(() => {
+      //@ts-ignore
       allValuesInArrayAreEqual(null);
     }).toThrow(new Error('Arg is not an array'));
 
