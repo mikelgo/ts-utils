@@ -12,7 +12,6 @@ jobs:
             - run: npm install
             - run: npm test
             - run: npm run build
-jobs:
   build:
     docker:
       - image: circleci/node:10.0-browsers
@@ -20,7 +19,7 @@ jobs:
       - checkout
       - run: npm install
       - run:
-          name: "Run Jest and Collect Coverage Reports"
+          name: 'Run Jest and Collect Coverage Reports'
           command: jest --collectCoverage=true
       - store_artifacts:
           path: coverage
@@ -28,7 +27,4 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test
-
-
-
-
+      - build
