@@ -17,6 +17,45 @@ Use npm to install:
 
 ## Usage
 
+Just import the util-function you want to use by importing it from the lib.
+
+Example:
+
+```typescript
+import {isValid} from '@mikelgo/ts-utils/lib/common'
+
+    if(isValid(somethingToCheck){
+        // ...execute some code
+    })
+```
+
+## Overview
+
+Currently the library does support 12 utility-functions.
+
+### Common utils
+
+- `isValid`
+- `isNotValid`
+- `isObject`
+- `isNotObject`
+- `isObjectOrArray`
+- `isNotObjectOrArray`
+
+### Array utils
+
+- `isArray`
+- `isNotArray`
+- `isEmptyArray`
+- `isNotEmptyArray`
+- `allValuesInArrayAreEqual`
+- `allValuesInArrayAreNotEqual`
+
+For the full documentation see:
+
+- [Object utils doc](./src/common/README.md)
+- [Array utils doc](./src/array/README.md)
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
