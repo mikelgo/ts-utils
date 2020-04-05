@@ -20,9 +20,13 @@ jobs:
       - run: npm install
       - run:
           name: 'Run Jest and Collect Coverage Reports'
-          command: npm test --collectCoverage=true
+          command: npm test --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: 'reports/junit/js-test-results.xml'
+      - store_test_results:
+          path: reports/junit
       - store_artifacts:
-          path: coverage
+          path: reports/junit
 workflows:
   build-and-test:
     jobs:
