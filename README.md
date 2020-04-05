@@ -29,6 +29,28 @@ import {isValid} from '@mikelgo/ts-utils/lib/common'
     })
 ```
 
+## Overview
+
+Currently the library does support 12 utility-functions.
+
+### Common utils
+
+- `isValid`
+- `isNotValid`
+- `isObject`
+- `isNotObject`
+- `isObjectOrArray`
+- `isNotObjectOrArray`
+
+### Array utils
+
+- `isArray`
+- `isNotArray`
+- `isEmptyArray`
+- `isNotEmptyArray`
+- `allValuesInArrayAreEqual`
+- `allValuesInArrayAreNotEqual`
+
 For the full documentation see:
 
 - [Object utils doc](./src/common/README.md)
