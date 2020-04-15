@@ -22,7 +22,7 @@ Just import the util-function you want to use by importing it from the lib.
 Example:
 
 ```typescript
-import {isValid} from '@mikelgo/ts-utils/lib/common'
+import {isValid} from '@mikelgo/ts-utils/common-utils'
 
     if(isValid(somethingToCheck){
         // ...execute some code
