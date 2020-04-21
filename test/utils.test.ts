@@ -5,7 +5,9 @@ import {
   isObjectOrArray,
   isNotValid,
   isValid,
-  noNullValues, getNested, noNullValuesProps
+  noNullValues,
+  noNullValuesProps,
+  notNull
 } from '../src/common/utils';
 
 describe('[Object utils]', () => {
@@ -94,36 +96,58 @@ describe('[Object utils]', () => {
     expect(isNotValid([null])).toEqual(false);
     expect(isNotValid([undefined])).toEqual(false);
   });
-
   describe('noNullValues', () => {
     it('should return expected result', () => {
       expect(noNullValues(null)).toEqual(false);
 
       expect(noNullValues({})).toEqual(true);
-      //
-      expect(noNullValues({id: 100, name: 'ted'})).toEqual(true);
-      //
-      expect(noNullValues({id: null, name: 1})).toEqual(false);
-      //
-      expect(noNullValues({id: 100, name: 'ted', address: {id: null, name: 'a'}})).toEqual(false);
 
-      expect(noNullValues({id: 100, name: 'ted', address: {id: [], name: 'a'}})).toEqual(true);
+      expect(noNullValues({ id: 100, name: 'ted' })).toEqual(true);
 
-      expect(noNullValues({id: 100, name: []})).toEqual(true);
+      expect(noNullValues({ id: null, name: 1 })).toEqual(false);
 
-    })
+      expect(noNullValues({ id: 100, name: 'ted', address: { id: null, name: 'a' } })).toEqual(false);
 
+      expect(noNullValues({ id: 100, name: 'ted', address: { id: [], name: 'a' } })).toEqual(true);
+
+      expect(noNullValues({ id: 100, name: [] })).toEqual(true);
+    });
   });
 
   describe('noNullValuesProps', () => {
     it('should return expected result', () => {
-      expect(noNullValuesProps({id: 100, name: null}, ['id', 'name'])).toEqual(false);
+      expect(noNullValuesProps({ id: 100, name: null }, ['id', 'name'])).toEqual(false);
 
-      expect(noNullValuesProps({id: 100, name: null}, ['id', 'foo'])).toEqual(true);
+      expect(noNullValuesProps({ id: 100, name: null }, ['id', 'foo'])).toEqual(true);
 
-      expect(noNullValuesProps({id: 100, name: []}, ['id', 'foo'])).toEqual(true);
-      expect(noNullValuesProps({id: 100, name: []}, ['id', 'name'])).toEqual(true);
-    })
-  })
+      expect(noNullValuesProps({ id: 100, name: [] }, ['id', 'foo'])).toEqual(true);
+      expect(noNullValuesProps({ id: 100, name: [] }, ['id', 'name'])).toEqual(true);
+    });
+  });
+  describe('notNull', () => {
+    it('with props: should return expected result', () => {
+      expect(notNull({ id: 100, name: null }, ['id', 'name'])).toEqual(false);
+
+      expect(notNull({ id: 100, name: null }, ['id', 'foo'])).toEqual(true);
+
+      expect(notNull({ id: 100, name: [] }, ['id', 'foo'])).toEqual(true);
+      expect(notNull({ id: 100, name: [] }, ['id', 'name'])).toEqual(true);
+    });
+
+    it('without props: should return expected result', () => {
+      expect(notNull(null)).toEqual(false);
+
+      expect(notNull({})).toEqual(true);
+
+      expect(notNull({ id: 100, name: 'ted' })).toEqual(true);
+
+      expect(notNull({ id: null, name: 1 })).toEqual(false);
+
+      expect(notNull({ id: 100, name: 'ted', address: { id: null, name: 'a' } })).toEqual(false);
+
+      expect(notNull({ id: 100, name: 'ted', address: { id: [], name: 'a' } })).toEqual(true);
+
+      expect(notNull({ id: 100, name: [] })).toEqual(true);
+    });
+  });
 });
-
