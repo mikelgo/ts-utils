@@ -70,6 +70,7 @@ export function isNotValid(arg: any): boolean {
  * null values.
  * @param arg
  */
+// TODO, optional ...args for property keys which should be checked for null values
 export function noNullValues(arg: any): boolean   {
   if(typeof arg === DataTypes.object) {
     /**
