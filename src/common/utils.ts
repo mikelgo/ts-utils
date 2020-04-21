@@ -1,5 +1,5 @@
 import { DataTypes } from '../@types/data-types';
-import { isArray } from '../array/array-utils';
+import { isArray, isNotArray } from '../array/array-utils';
 
 /**
  * Checks if an argument is not an object
@@ -64,3 +64,42 @@ export function isValid(arg: any): boolean {
 export function isNotValid(arg: any): boolean {
   return !isValid(arg);
 }
+
+
+export function noNullValues(arg: any): boolean  {
+  if(typeof arg === 'object') {
+    if(arg === null) {
+      return false;
+    }
+    const keys: string[] = Object.keys(arg);
+    const results: boolean[] = [];
+    keys.forEach(key => {
+      // let value = arg[key];
+      if(typeof key === 'object') {
+        // results.push(noNullValues(value));
+        noNullValues(arg[key]);
+      } else {
+
+        results.push(isValid(arg[key]));
+      }
+    });
+    if(results.includes(false)) {
+      return false;
+    }
+  }
+
+  return isValid(arg);
+}
+
+// private concatAllProperties(obj:{}):string[]{
+//   const result=[];
+//   for(const prop in obj){
+//     const value= obj[prop];
+//     if(typeof value==='object'){
+//       result.push(this.concatAllProperties(value));
+//     }else{
+//       result.push(value.toString().toLowerCase());
+//     }
+//   }
+//   return result;
+// }
