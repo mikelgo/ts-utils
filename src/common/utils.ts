@@ -67,15 +67,19 @@ export function isNotValid(arg: any): boolean {
 
 
 export function noNullValues(arg: any): boolean   {
-  if(typeof arg === 'object') {
-    if(arg === null) {
+  if(typeof arg === DataTypes.object) {
+    if(isNotValid(arg)) {
       return false;
+    }
+    if(isValid(arg) && isArray(arg)) {
+      // TODO evtl. also for all array values check if it has nulls
+      return true;
     }
     const keys: string[] = Object.keys(arg);
     const results: boolean[] = [];
     keys.forEach(key => {
       // let value = arg[key];
-      if(typeof arg[key] === 'object') {
+      if(typeof arg[key] === DataTypes.object) {
         // results.push(noNullValues(value));
         results.push(noNullValues(arg[key]));
       } else {

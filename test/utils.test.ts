@@ -1,4 +1,12 @@
-import { isNotObject, isNotObjectOrArray, isObject, isObjectOrArray, isNotValid, isValid } from '../src/common/utils';
+import {
+  isNotObject,
+  isNotObjectOrArray,
+  isObject,
+  isObjectOrArray,
+  isNotValid,
+  isValid,
+  noNullValues
+} from '../src/common/utils';
 
 describe('[Object utils]', () => {
   it('isNotObject(): should return true if input is not an object', () => {
@@ -86,4 +94,20 @@ describe('[Object utils]', () => {
     expect(isNotValid([null])).toEqual(false);
     expect(isNotValid([undefined])).toEqual(false);
   });
+});
+
+describe('noNullValues', () => {
+  it('should', () => {
+    expect(noNullValues(null)).toEqual(false);
+
+    expect(noNullValues({})).toEqual(true);
+    //
+    expect(noNullValues({id: 100, name: 'ted'})).toEqual(true);
+    //
+    expect(noNullValues({id: null, name: 1})).toEqual(false);
+    //
+    expect(noNullValues({id: 100, name: 'ted', address: {id: null, name: 'a'}})).toEqual(false);
+
+
+  })
 });
