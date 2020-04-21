@@ -69,9 +69,7 @@ export function isNotValid(arg: any): boolean {
  * Checks if an argument is null or if an object contains any
  * null values.
  * @param arg
- * @param props
  */
-// TODO, optional ...args for property keys which should be checked for null values
 export function noNullValues(arg: any): boolean {
   if (typeof arg === DataTypes.object) {
     /**
