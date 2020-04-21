@@ -5,7 +5,7 @@ import {
   isObjectOrArray,
   isNotValid,
   isValid,
-  noNullValues
+  noNullValues, getNested, noNullValuesProps
 } from '../src/common/utils';
 
 describe('[Object utils]', () => {
@@ -112,6 +112,14 @@ describe('noNullValues', () => {
 
     expect(noNullValues({id: 100, name: []})).toEqual(true);
 
-
   })
+
 });
+//TODO rework test structure
+describe('noNullValuesProps', () => {
+  it('should', () => {
+    expect(noNullValuesProps({id: 100, name: null}, ['id', 'name'])).toEqual(false);
+
+    expect(noNullValuesProps({id: 100, name: null}, ['id', 'foo'])).toEqual(true);
+  })
+})

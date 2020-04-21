@@ -1,5 +1,5 @@
 import { DataTypes } from '../@types/data-types';
-import { isArray, isNotArray } from '../array/array-utils';
+import { isArray, isNotArray, isNotEmptyArray } from '../array/array-utils';
 
 /**
  * Checks if an argument is not an object
@@ -69,45 +69,84 @@ export function isNotValid(arg: any): boolean {
  * Checks if an argument is null or if an object contains any
  * null values.
  * @param arg
+ * @param props
  */
 // TODO, optional ...args for property keys which should be checked for null values
 export function noNullValues(arg: any): boolean   {
-  if(typeof arg === DataTypes.object) {
-    /**
-     * if arg is an object, first check if it's null
-     */
-    if(isNotValid(arg)) {
-      return false;
+
+    if(typeof arg === DataTypes.object) {
+      /**
+       * if arg is an object, first check if it's null
+       */
+      if(isNotValid(arg)) {
+        return false;
+      }
+      /**
+       * if arg is an object but not null, check if it is an array.
+       * Then some special handling is needed.
+       */
+      if(isValid(arg) && isArray(arg)) {
+        // TODO evtl. also for all array values check if it has nulls
+        return true;
+      }
+      /**
+       * Get all object keys and check each value for every key.
+       * If at least on value is null, this method will return false.
+       */
+      const keys: string[] = Object.keys(arg);
+      const results: boolean[] = [];
+      keys.forEach(key => {
+        // let value = arg[key];
+        if(typeof arg[key] === DataTypes.object) {
+          // results.push(noNullValues(value));
+          results.push(noNullValues(arg[key]));
+        } else {
+          results.push(isValid(arg[key]));
+        }
+      });
+      if(results.includes(false)) {
+        return false;
+      }
     }
     /**
-     * if arg is an object but not null, check if it is an array.
-     * Then some special handling is needed.
+     * default
      */
-    if(isValid(arg) && isArray(arg)) {
-      // TODO evtl. also for all array values check if it has nulls
-      return true;
-    }
-    /**
-     * Get all object keys and check each value for every key.
-     * If at least on value is null, this method will return false.
-     */
-    const keys: string[] = Object.keys(arg);
+
+
+  return !!arg;
+}
+
+/**
+ * TODO Add doc
+ * TODO check if makes sense
+ * TODO chekc if it can be unified with noNullValues by having optional props arg
+ * @param arg
+ * @param props
+ */
+export function noNullValuesProps(arg: any, props: string[]): boolean   {
+    if (isValid(props) && props?.length > 0) {
+    // const propsToCheck: string[] = [...props?];
     const results: boolean[] = [];
-    keys.forEach(key => {
-      // let value = arg[key];
-      if(typeof arg[key] === DataTypes.object) {
-        // results.push(noNullValues(value));
-        results.push(noNullValues(arg[key]));
+    const vals: any[] = [];
+
+    props.forEach(prop => {
+      if(arg[prop] === undefined) {
+        results.push(true);
       } else {
-        results.push(isValid(arg[key]));
+
+        results.push(isValid(getNested(arg[prop])));
+        vals.push(getNested(arg[prop]));
       }
     });
-    if(results.includes(false)) {
-      return false;
-    }
+      if(results.includes(false)) {
+        return false;
+      }
   }
-  /**
-   * default
-   */
+
     return !!arg;
+
+}
+
+export function getNested(input: any, ...args: string[]): any {
+  return args.reduce((obj, level) => obj && obj[level], input)
 }
