@@ -108,6 +108,10 @@ describe('noNullValues', () => {
     //
     expect(noNullValues({id: 100, name: 'ted', address: {id: null, name: 'a'}})).toEqual(false);
 
+    expect(noNullValues({id: 100, name: 'ted', address: {id: [], name: 'a'}})).toEqual(true);
+
+    expect(noNullValues({id: 100, name: []})).toEqual(true);
+
 
   })
 });
