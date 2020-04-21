@@ -4,7 +4,7 @@
     "declarationDir": "./lib",
     "module": "commonjs",
     "noImplicitAny": true,
-    "lib": ["es2017", "es2017.object"],
+    "lib": ["es2017", "es2017.object", "dom"],
     "outDir": "./lib",
     "sourceMap": false,
     "target": "ES2017",

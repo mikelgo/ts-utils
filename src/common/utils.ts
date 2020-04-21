@@ -66,7 +66,7 @@ export function isNotValid(arg: any): boolean {
 }
 
 
-export function noNullValues(arg: any): boolean  {
+export function noNullValues(arg: any): boolean   {
   if(typeof arg === 'object') {
     if(arg === null) {
       return false;
@@ -75,11 +75,10 @@ export function noNullValues(arg: any): boolean  {
     const results: boolean[] = [];
     keys.forEach(key => {
       // let value = arg[key];
-      if(typeof key === 'object') {
+      if(typeof arg[key] === 'object') {
         // results.push(noNullValues(value));
-        noNullValues(arg[key]);
+        results.push(noNullValues(arg[key]));
       } else {
-
         results.push(isValid(arg[key]));
       }
     });
@@ -87,19 +86,5 @@ export function noNullValues(arg: any): boolean  {
       return false;
     }
   }
-
-  return isValid(arg);
+    return !!arg;
 }
-
-// private concatAllProperties(obj:{}):string[]{
-//   const result=[];
-//   for(const prop in obj){
-//     const value= obj[prop];
-//     if(typeof value==='object'){
-//       result.push(this.concatAllProperties(value));
-//     }else{
-//       result.push(value.toString().toLowerCase());
-//     }
-//   }
-//   return result;
-// }
