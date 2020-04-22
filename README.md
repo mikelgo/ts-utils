@@ -41,6 +41,8 @@ Currently the library does support 12 utility-functions.
 - `isNotObject`
 - `isObjectOrArray`
 - `isNotObjectOrArray`
+- `noNullValues`
+- `notNull`
 
 ### Array utils
 
