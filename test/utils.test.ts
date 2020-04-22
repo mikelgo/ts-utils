@@ -1,4 +1,13 @@
-import { isNotObject, isNotObjectOrArray, isObject, isObjectOrArray, isNotValid, isValid } from '../src/common/utils';
+import {
+  isNotObject,
+  isNotObjectOrArray,
+  isObject,
+  isObjectOrArray,
+  isNotValid,
+  isValid,
+  noNullValues,
+  notNull
+} from '../src/common/utils';
 
 describe('[Object utils]', () => {
   it('isNotObject(): should return true if input is not an object', () => {
@@ -85,5 +94,50 @@ describe('[Object utils]', () => {
     expect(isNotValid([true, false])).toEqual(false);
     expect(isNotValid([null])).toEqual(false);
     expect(isNotValid([undefined])).toEqual(false);
+  });
+  describe('noNullValues', () => {
+    it('should return expected result', () => {
+      expect(noNullValues(null)).toEqual(false);
+
+      expect(noNullValues({})).toEqual(true);
+
+      expect(noNullValues({ id: 100, name: 'ted' })).toEqual(true);
+
+      expect(noNullValues({ id: null, name: 1 })).toEqual(false);
+
+      expect(noNullValues({ id: 100, name: 'ted', address: { id: null, name: 'a' } })).toEqual(false);
+
+      expect(noNullValues({ id: 100, name: 'ted', address: { id: [], name: 'a' } })).toEqual(true);
+
+      expect(noNullValues({ id: 100, name: [] })).toEqual(true);
+    });
+  });
+
+
+  describe('notNull', () => {
+    it('with props: should return expected result', () => {
+      expect(notNull({ id: 100, name: null }, ['id', 'name'])).toEqual(false);
+
+      expect(notNull({ id: 100, name: null }, ['id', 'foo'])).toEqual(true);
+
+      expect(notNull({ id: 100, name: [] }, ['id', 'foo'])).toEqual(true);
+      expect(notNull({ id: 100, name: [] }, ['id', 'name'])).toEqual(true);
+    });
+
+    it('without props: should return expected result', () => {
+      expect(notNull(null)).toEqual(false);
+
+      expect(notNull({})).toEqual(true);
+
+      expect(notNull({ id: 100, name: 'ted' })).toEqual(true);
+
+      expect(notNull({ id: null, name: 1 })).toEqual(false);
+
+      expect(notNull({ id: 100, name: 'ted', address: { id: null, name: 'a' } })).toEqual(false);
+
+      expect(notNull({ id: 100, name: 'ted', address: { id: [], name: 'a' } })).toEqual(true);
+
+      expect(notNull({ id: 100, name: [] })).toEqual(true);
+    });
   });
 });
