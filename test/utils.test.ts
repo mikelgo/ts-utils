@@ -6,7 +6,6 @@ import {
   isNotValid,
   isValid,
   noNullValues,
-  noNullValuesProps,
   notNull
 } from '../src/common/utils';
 
@@ -114,16 +113,7 @@ describe('[Object utils]', () => {
     });
   });
 
-  describe('noNullValuesProps', () => {
-    it('should return expected result', () => {
-      expect(noNullValuesProps({ id: 100, name: null }, ['id', 'name'])).toEqual(false);
 
-      expect(noNullValuesProps({ id: 100, name: null }, ['id', 'foo'])).toEqual(true);
-
-      expect(noNullValuesProps({ id: 100, name: [] }, ['id', 'foo'])).toEqual(true);
-      expect(noNullValuesProps({ id: 100, name: [] }, ['id', 'name'])).toEqual(true);
-    });
-  });
   describe('notNull', () => {
     it('with props: should return expected result', () => {
       expect(notNull({ id: 100, name: null }, ['id', 'name'])).toEqual(false);

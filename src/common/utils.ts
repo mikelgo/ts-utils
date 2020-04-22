@@ -117,9 +117,8 @@ export function noNullValues(arg: any): boolean {
  * @param arg
  * @param props
  */
-export function noNullValuesProps(arg: any, props: string[]): boolean {
+ function noNullValuesProps(arg: any, props: string[]): boolean {
   if (isValid(props) && props?.length > 0) {
-    // const propsToCheck: string[] = [...props?];
     const results: boolean[] = [];
     const vals: any[] = [];
 
