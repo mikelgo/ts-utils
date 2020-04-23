@@ -1,13 +1,11 @@
-import {
-  isNotObject,
-  isNotObjectOrArray,
-  isObject,
-  isObjectOrArray,
-  isNotValid,
-  isValid,
-  noNullValues,
-  notNull
-} from '../src/common/utils';
+import { isValid } from '../src/common/is-valid';
+import { isNotValid } from '../src/common/is-not-valid';
+import { isObject } from '../src/common/is-object';
+import { isNotObject } from '../src/common/is-not-object';
+import { isObjectOrArray } from '../src/common/is-object-or-array';
+import { isNotObjectOrArray } from '../src/common/is-not-object-or-array';
+import { noNullValues } from '../src/common/no-null-values';
+import { notNull } from '../src/common/not-null';
 
 describe('[Object utils]', () => {
   it('isNotObject(): should return true if input is not an object', () => {
@@ -112,7 +110,6 @@ describe('[Object utils]', () => {
       expect(noNullValues({ id: 100, name: [] })).toEqual(true);
     });
   });
-
 
   describe('notNull', () => {
     it('with props: should return expected result', () => {
