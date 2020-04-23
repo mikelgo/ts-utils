@@ -79,6 +79,20 @@ describe('isValid()', () => {
     expect(isValid(null)).toEqual(false);
     expect(isValid(undefined)).toEqual(false);
   });
+
+  it('should return true when a nested object is valid, when parameter deep is given', () => {
+    const deep = true;
+    expect(isValid(42, deep)).toEqual(true);
+
+    expect(isValid({ id: 1, name: 'test' }, deep)).toEqual(true);
+  });
+
+  it('should return false when a nested object is not valid, when parameter deep is given', () => {
+    const deep = true;
+
+    expect(isValid({ id: null, name: 'test' }, deep)).toEqual(false);
+    expect(isValid({ id: 1, name: 'test', address: { street: null } }, deep)).toEqual(false);
+  });
 });
 
 describe('isNotValid()', () => {
@@ -102,6 +116,20 @@ describe('isNotValid()', () => {
     expect(isNotValid([true, false])).toEqual(false);
     expect(isNotValid([null])).toEqual(false);
     expect(isNotValid([undefined])).toEqual(false);
+  });
+
+  it('should return false when a nested object is valid, when parameter deep is given', () => {
+    const deep = true;
+    expect(isNotValid(42, deep)).toEqual(false);
+
+    expect(isNotValid({ id: 1, name: 'test' }, deep)).toEqual(false);
+  });
+
+  it('should return true when a nested object is not valid, when parameter deep is given', () => {
+    const deep = true;
+
+    expect(isNotValid({ id: null, name: 'test' }, deep)).toEqual(true);
+    expect(isNotValid({ id: 1, name: 'test', address: { street: null } }, deep)).toEqual(true);
   });
 });
 
