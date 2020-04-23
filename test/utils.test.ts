@@ -1,58 +1,64 @@
-import {
-  isNotObject,
-  isNotObjectOrArray,
-  isObject,
-  isObjectOrArray,
-  isNotValid,
-  isValid,
-  noNullValues,
-  notNull
-} from '../src/common/utils';
+import { isValid } from '../src/common/is-valid';
+import { isNotValid } from '../src/common/is-not-valid';
+import { isObject } from '../src/common/is-object';
+import { isNotObject } from '../src/common/is-not-object';
+import { isObjectOrArray } from '../src/common/is-object-or-array';
+import { isNotObjectOrArray } from '../src/common/is-not-object-or-array';
+import { noNullValues } from '../src/common/no-null-values';
+import { notNull } from '../src/common/not-null';
 
-describe('[Object utils]', () => {
-  it('isNotObject(): should return true if input is not an object', () => {
+describe('isNotObject()', () => {
+  it('should return true if input is not an object', () => {
     expect(isNotObject('string')).toEqual(true);
     expect(isNotObject(42)).toEqual(true);
     expect(isNotObject(undefined)).toEqual(true);
   });
 
-  it('isNotObject(): should return false if input is an object', () => {
+  it('should return false if input is an object', () => {
     expect(isNotObject({ name: 'John Doe' })).toEqual(false);
   });
+});
 
-  it('isNotObjectOrArray(): should return true if input is not an object', () => {
+describe('isNotObjectOrArray()', () => {
+  it('should return true if input is not an object', () => {
     expect(isNotObjectOrArray('string')).toEqual(true);
     expect(isNotObjectOrArray(42)).toEqual(true);
     expect(isNotObjectOrArray(undefined)).toEqual(true);
   });
 
-  it('isNotObjectOrArray(): should return false if input is an object', () => {
+  it('should return false if input is an object', () => {
     expect(isNotObjectOrArray([1, 2])).toEqual(false);
     expect(isNotObjectOrArray({ name: 'John Doe' })).toEqual(false);
   });
+});
 
-  it('isObject(): should return true if input is an object', () => {
+describe('isObject()', () => {
+  it('should return true if input is an object', () => {
     expect(isObject('string')).toEqual(false);
     expect(isObject(42)).toEqual(false);
     expect(isObject(undefined)).toEqual(false);
   });
 
-  it('isObject(): should return false if input is not an object', () => {
+  it('should return false if input is not an object', () => {
     expect(isObject({ name: 'John Doe' })).toEqual(true);
   });
+});
 
-  it('isObjectOrArray(): should return false if input is not an object', () => {
+describe('isObjectOrArray()', () => {
+  it('should return false if input is not an object', () => {
     expect(isObjectOrArray('string')).toEqual(false);
     expect(isObjectOrArray(42)).toEqual(false);
     expect(isObjectOrArray(undefined)).toEqual(false);
   });
 
-  it('isObjectOrArray(): should return true if input is an object', () => {
+  it('should return true if input is an object', () => {
     expect(isObjectOrArray([1, 2])).toEqual(true);
     expect(isObjectOrArray({ name: 'John Doe' })).toEqual(true);
   });
+});
 
-  it('isValid() should return true when the argument is a valid value', () => {
+describe('isValid()', () => {
+  it('should return true when the argument is a valid value', () => {
     expect(isValid(42)).toEqual(true);
     expect(isValid('string')).toEqual(true);
     expect(isValid(true)).toEqual(true);
@@ -69,17 +75,19 @@ describe('[Object utils]', () => {
     expect(isValid([undefined])).toEqual(true);
   });
 
-  it('isValid() should return false when the argument is not a valid value', () => {
+  it('should return false when the argument is not a valid value', () => {
     expect(isValid(null)).toEqual(false);
     expect(isValid(undefined)).toEqual(false);
   });
+});
 
-  it('isNotValid() should return true when the argument is not a valid value', () => {
+describe('isNotValid()', () => {
+  it('should return true when the argument is not a valid value', () => {
     expect(isNotValid(null)).toEqual(true);
     expect(isNotValid(undefined)).toEqual(true);
   });
 
-  it('isNotValid() should return false when the argument is a valid value', () => {
+  it('should return false when the argument is a valid value', () => {
     expect(isNotValid(42)).toEqual(false);
     expect(isNotValid('strng')).toEqual(false);
     expect(isNotValid(true)).toEqual(false);
@@ -95,49 +103,49 @@ describe('[Object utils]', () => {
     expect(isNotValid([null])).toEqual(false);
     expect(isNotValid([undefined])).toEqual(false);
   });
-  describe('noNullValues', () => {
-    it('should return expected result', () => {
-      expect(noNullValues(null)).toEqual(false);
+});
 
-      expect(noNullValues({})).toEqual(true);
+describe('noNullValues', () => {
+  it('should return expected result', () => {
+    expect(noNullValues(null)).toEqual(false);
 
-      expect(noNullValues({ id: 100, name: 'ted' })).toEqual(true);
+    expect(noNullValues({})).toEqual(true);
 
-      expect(noNullValues({ id: null, name: 1 })).toEqual(false);
+    expect(noNullValues({ id: 100, name: 'ted' })).toEqual(true);
 
-      expect(noNullValues({ id: 100, name: 'ted', address: { id: null, name: 'a' } })).toEqual(false);
+    expect(noNullValues({ id: null, name: 1 })).toEqual(false);
 
-      expect(noNullValues({ id: 100, name: 'ted', address: { id: [], name: 'a' } })).toEqual(true);
+    expect(noNullValues({ id: 100, name: 'ted', address: { id: null, name: 'a' } })).toEqual(false);
 
-      expect(noNullValues({ id: 100, name: [] })).toEqual(true);
-    });
+    expect(noNullValues({ id: 100, name: 'ted', address: { id: [], name: 'a' } })).toEqual(true);
+
+    expect(noNullValues({ id: 100, name: [] })).toEqual(true);
+  });
+});
+
+describe('notNull', () => {
+  it('with props: should return expected result', () => {
+    expect(notNull({ id: 100, name: null }, ['id', 'name'])).toEqual(false);
+
+    expect(notNull({ id: 100, name: null }, ['id', 'foo'])).toEqual(true);
+
+    expect(notNull({ id: 100, name: [] }, ['id', 'foo'])).toEqual(true);
+    expect(notNull({ id: 100, name: [] }, ['id', 'name'])).toEqual(true);
   });
 
+  it('without props: should return expected result', () => {
+    expect(notNull(null)).toEqual(false);
 
-  describe('notNull', () => {
-    it('with props: should return expected result', () => {
-      expect(notNull({ id: 100, name: null }, ['id', 'name'])).toEqual(false);
+    expect(notNull({})).toEqual(true);
 
-      expect(notNull({ id: 100, name: null }, ['id', 'foo'])).toEqual(true);
+    expect(notNull({ id: 100, name: 'ted' })).toEqual(true);
 
-      expect(notNull({ id: 100, name: [] }, ['id', 'foo'])).toEqual(true);
-      expect(notNull({ id: 100, name: [] }, ['id', 'name'])).toEqual(true);
-    });
+    expect(notNull({ id: null, name: 1 })).toEqual(false);
 
-    it('without props: should return expected result', () => {
-      expect(notNull(null)).toEqual(false);
+    expect(notNull({ id: 100, name: 'ted', address: { id: null, name: 'a' } })).toEqual(false);
 
-      expect(notNull({})).toEqual(true);
+    expect(notNull({ id: 100, name: 'ted', address: { id: [], name: 'a' } })).toEqual(true);
 
-      expect(notNull({ id: 100, name: 'ted' })).toEqual(true);
-
-      expect(notNull({ id: null, name: 1 })).toEqual(false);
-
-      expect(notNull({ id: 100, name: 'ted', address: { id: null, name: 'a' } })).toEqual(false);
-
-      expect(notNull({ id: 100, name: 'ted', address: { id: [], name: 'a' } })).toEqual(true);
-
-      expect(notNull({ id: 100, name: [] })).toEqual(true);
-    });
+    expect(notNull({ id: 100, name: [] })).toEqual(true);
   });
 });
