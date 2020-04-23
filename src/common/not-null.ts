@@ -10,7 +10,10 @@ import { isValid } from './is-valid';
  * @param arg
  * @param keys
  */
-export function notNull(arg: any, keys?: string[]): boolean {
+export function notNull(arg: any, keys?: string[], shallow: boolean = false): boolean {
+  if (shallow) {
+    return isValid(arg);
+  }
   if (keys) {
     return noNullValuesProps(arg, keys);
   } else {

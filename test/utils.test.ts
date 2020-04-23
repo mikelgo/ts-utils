@@ -148,4 +148,10 @@ describe('notNull', () => {
 
     expect(notNull({ id: 100, name: [] })).toEqual(true);
   });
+
+  it('should not do a deep null check when "shallow" is set to true', () => {
+    expect(notNull(null, [], true)).toEqual(false);
+
+    expect(notNull({ id: 100, name: 'ted', address: { id: null, name: 'a' } }, [], true)).toEqual(true);
+  });
 });
